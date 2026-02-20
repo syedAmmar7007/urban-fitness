@@ -22,14 +22,10 @@ import {
   Trophy
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { generateLogoImage } from './services/logoGenerator';
 
 // --- Components ---
 
-const Logo = ({ className = "w-12 h-12", src }: { className?: string, src?: string | null }) => {
-  if (src) {
-    return <img src={src} alt="Urban Fitness Logo" className={`${className} object-contain`} referrerPolicy="no-referrer" />;
-  }
+const Logo = ({ className = "w-12 h-12" }: { className?: string }) => {
   return (
     <svg viewBox="0 0 200 200" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -69,6 +65,12 @@ const Logo = ({ className = "w-12 h-12", src }: { className?: string, src?: stri
           <stop offset="100%" stopColor="#B45F06" />
         </linearGradient>
 
+        <linearGradient id="silverGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#FFFFFF" />
+          <stop offset="50%" stopColor="#D1D5DB" />
+          <stop offset="100%" stopColor="#9CA3AF" />
+        </linearGradient>
+
         <linearGradient id="frameGrad" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#F3F4F6" />
           <stop offset="50%" stopColor="#9CA3AF" />
@@ -96,9 +98,9 @@ const Logo = ({ className = "w-12 h-12", src }: { className?: string, src?: stri
         </g>
       ))}
 
-      {/* URBAN Text */}
+      {/* URBAN Text - Silver/White as per image */}
       <path id="urbanPath" d="M40 85 Q100 45 160 85" fill="none" />
-      <text className="font-black italic uppercase" fontSize="24" fill="url(#goldGrad)" filter="url(#metalShine)">
+      <text className="font-black italic uppercase" fontSize="24" fill="url(#silverGrad)" filter="url(#metalShine)">
         <textPath href="#urbanPath" startOffset="50%" textAnchor="middle">URBAN</textPath>
       </text>
 
@@ -119,7 +121,7 @@ const Logo = ({ className = "w-12 h-12", src }: { className?: string, src?: stri
   );
 };
 
-const Navbar = ({ logoSrc }: { logoSrc: string | null }) => {
+const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -143,7 +145,7 @@ const Navbar = ({ logoSrc }: { logoSrc: string | null }) => {
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-black/80 backdrop-blur-md border-b border-white/10 py-4' : 'bg-transparent py-6'}`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         <div className="flex items-center gap-3">
-          <Logo className="w-14 h-14" src={logoSrc} />
+          <Logo className="w-14 h-14" />
           <div className="flex flex-col leading-none">
             <span className="text-xl font-black tracking-tighter uppercase italic">Urban</span>
             <span className="text-sm font-bold tracking-[0.3em] uppercase text-yellow-500 -mt-1">Fitness KHI</span>
@@ -509,12 +511,12 @@ const Contact = () => {
   );
 };
 
-const Footer = ({ logoSrc }: { logoSrc: string | null }) => {
+const Footer = () => {
   return (
     <footer className="py-12 border-t border-white/10 bg-[#0a0a0a]">
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
         <div className="flex items-center gap-3">
-          <Logo className="w-12 h-12" src={logoSrc} />
+          <Logo className="w-12 h-12" />
           <div className="flex flex-col leading-none">
             <span className="text-lg font-black tracking-tighter uppercase italic">Urban</span>
             <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-yellow-500 -mt-0.5">Fitness KHI</span>
@@ -546,29 +548,15 @@ const WhatsAppButton = () => {
 // --- Main App ---
 
 export default function App() {
-  const [logoSrc, setLogoSrc] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchLogo = async () => {
-      try {
-        const src = await generateLogoImage();
-        setLogoSrc(src);
-      } catch (error) {
-        console.error("Failed to generate logo:", error);
-      }
-    };
-    fetchLogo();
-  }, []);
-
   return (
     <div className="min-h-screen selection:bg-yellow-500 selection:text-black">
-      <Navbar logoSrc={logoSrc} />
+      <Navbar />
       <Hero />
       <Features />
       <Services />
       <Membership />
       <Contact />
-      <Footer logoSrc={logoSrc} />
+      <Footer />
       <WhatsAppButton />
     </div>
   );
