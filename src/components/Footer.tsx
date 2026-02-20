@@ -1,4 +1,5 @@
 import React from 'react';
+import { Facebook, Instagram } from 'lucide-react';
 import { Logo } from './Logo';
 
 export const Footer = ({ logoSrc }: { logoSrc: string | null }) => {
