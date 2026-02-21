@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckCircle2 } from 'lucide-react';
+import { motion } from 'motion/react';
 
 export const Membership = () => {
   const plans = [
@@ -24,40 +24,55 @@ export const Membership = () => {
   ];
 
   return (
-    <section id="membership" className="py-24 bg-[#0a0a0a]">
+    <section id="membership" className="py-32 bg-black">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-black uppercase italic tracking-tighter mb-4">Choose Your <span className="text-yellow-500">Plan</span></h2>
-          <p className="text-gray-500">Flexible memberships for every fitness level.</p>
-        </div>
-        <div className="grid md:grid-cols-3 gap-8">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-20"
+        >
+          <span className="section-subtitle">Membership Plans</span>
+          <h2 className="section-title">Choose Your <span className="text-primary">Journey</span></h2>
+        </motion.div>
+        
+        <div className="grid md:grid-cols-3 gap-0 border border-white/10 overflow-hidden">
           {plans.map((plan, idx) => (
-            <div 
+            <motion.div 
               key={idx} 
-              className={`p-10 rounded-3xl border ${plan.popular ? 'border-yellow-500 bg-yellow-500/5 relative' : 'border-white/10 bg-white/5'}`}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1, duration: 0.5 }}
+              whileHover={{ backgroundColor: "rgba(249, 115, 22, 0.05)" }}
+              className={`p-12 flex flex-col items-center text-center border-r border-white/10 last:border-r-0 transition-all duration-500 group ${plan.popular ? 'bg-white/2' : ''}`}
             >
-              {plan.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-yellow-500 text-black px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
-                  Most Popular
+              <h3 className="text-2xl font-bold mb-8 group-hover:text-primary transition-colors">{plan.name}</h3>
+              <div className="mb-10">
+                <span className="text-sm font-bold text-gray-500 uppercase tracking-widest block mb-2">Starting From</span>
+                <div className="flex items-baseline justify-center gap-1">
+                  <span className="text-sm font-bold text-primary">PKR</span>
+                  <span className="text-6xl font-bold">{plan.price}</span>
                 </div>
-              )}
-              <h3 className="text-2xl font-bold uppercase italic mb-2">{plan.name}</h3>
-              <div className="flex items-baseline gap-1 mb-8">
-                <span className="text-4xl font-black">PKR {plan.price}</span>
-                <span className="text-gray-500">/mo</span>
+                <span className="text-gray-500 text-xs font-bold uppercase tracking-widest">Per Month</span>
               </div>
-              <ul className="space-y-4 mb-10">
+              
+              <ul className="space-y-4 mb-12 w-full">
                 {plan.features.map((feature, fIdx) => (
-                  <li key={fIdx} className="flex items-center gap-3 text-gray-300">
-                    <CheckCircle2 className="w-5 h-5 text-yellow-500" />
+                  <li key={fIdx} className="text-gray-400 text-sm font-medium border-b border-white/5 pb-2 last:border-0">
                     {feature}
                   </li>
                 ))}
               </ul>
-              <button className={`w-full py-4 rounded-xl font-black uppercase tracking-wider transition-all ${plan.popular ? 'bg-yellow-500 text-black hover:bg-yellow-400' : 'bg-white/10 text-white hover:bg-white/20'}`}>
-                Get Started
-              </button>
-            </div>
+              
+              <motion.button 
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className={`w-full py-4 font-bold uppercase tracking-widest transition-all ${plan.popular ? 'bg-primary text-black hover:bg-white' : 'border border-white/20 text-white hover:bg-primary hover:text-black hover:border-primary'}`}
+              >
+                Join Now
+              </motion.button>
+            </motion.div>
           ))}
         </div>
       </div>

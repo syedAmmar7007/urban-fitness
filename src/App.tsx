@@ -13,8 +13,8 @@ import { Membership } from "./components/Membership";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
 import { WhatsAppButton } from "./components/WhatsAppButton";
+import { Route, Routes } from "react-router-dom";
 
-// --- Main App ---
 
 export default function App() {
   const [logoSrc, setLogoSrc] = useState<string | null>(null);
