@@ -16,7 +16,7 @@ export async function generateLogoImage() {
       contents: {
         parts: [
           {
-            text: 'A high-quality, 3D metallic shield logo for "URBAN FITNESS". The shield has a brushed silver frame with visible screws and a glossy black interior. At the top, the word "URBAN" is arched in metallic silver. At the bottom, the word "FITNESS" is arched in bold, 3D orange-gold gradient text. In the center, there are two silhouettes: a silver female on the left and an orange male on the right, both holding dumbbells and facing away from each other. Professional, high-resolution, gym branding.',
+            text: 'A professional, high-resolution shield logo for "URBAN FITNESS". The shield has a polished silver/chrome frame with visible industrial screws. The interior of the shield is matte black. At the top, the word "URBAN" is arched in a bold, metallic silver font. At the bottom, the word "FITNESS" is in a bold, heavy sans-serif font with a vibrant orange-to-gold gradient. In the center, there are two silhouettes: a silver/white female on the left and a vibrant orange male on the right, both flexing and holding dumbbells, facing away from each other. A subtle white arc separates the silhouettes from the bottom text. Gym branding, high quality, 3D effect.',
           },
         ],
       },
