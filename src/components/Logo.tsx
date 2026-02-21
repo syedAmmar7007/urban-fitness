@@ -2,20 +2,10 @@ import React from 'react';
 
 export const Logo = ({ className = "w-12 h-12", src }: { className?: string, src?: string | null }) => {
   if (src) {
-    return (
-      <div className={`${className} flex items-center justify-center overflow-visible bg-transparent`}>
-        <img 
-          src={src} 
-          alt="Urban Fitness Logo" 
-          className="w-full h-full object-contain bg-transparent" 
-          referrerPolicy="no-referrer" 
-          style={{ filter: 'drop-shadow(0px 4px 8px rgba(0,0,0,0.5))' }}
-        />
-      </div>
-    );
+    return <img src={src} alt="Urban Fitness Logo" className={`${className} object-contain`} referrerPolicy="no-referrer" />;
   }
   return (
-    <svg viewBox="0 0 200 200" className={className} fill="none" xmlns="http://www.w3.org/2000/svg" style={{ overflow: 'visible' }}>
+    <svg viewBox="0 0 200 200" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
         {/* Specular Lighting for Metallic Shine */}
         <filter id="metalShine" x="-20%" y="-20%" width="140%" height="140%">
